@@ -5,25 +5,24 @@ Feature: Login no aplicativo
 
 Scenario: Login correto
     Given o cliente está na página de "login"
-        And existe um usuario cadastrado com o email "acruchi@gmail.com" e senha "123456"
+        And existe um usuario cadastrado com o email "USER_EMAIL" e senha "USER_SENHA"
         And estou na página inicial de "login"
-    When eu preencho o campo email do aplicatico com o email "acruchi@gmail.com" e o campo de senha com a senha "123456"
+    When eu preencho os campos email e senha corretamente
     Then o cliente é encaminhado para a tela inicial do aplicativo
 
 Scenario: Login admin
     Given o admin não está logado com nenhum usuário na aplicação
-        And existe um admin cadastrado com o email "admin@gmail.com" e senha "admin"
+        And existe um admin cadastrado com o email " ADMIN_EMAIL" e senha "ADMIN_SENHA"
         And estou na página inicial de "login"
-    When eu tento acessar o aplicatico com o email"admin@gmail.com"
-        And com a senha "admin"
+    When eu preencho os campos email e senha corretamente
     Then o admin é encaminhado para a pagina do administrador
 
 Scenario: Login com a senha errada
     Given Não estou logado com nenhum usuário na aplicação
-        And existe um usuario cadastrado com o email "acruchi@gmail.com" e senha "123456"
+        And existe um usuario cadastrado    
         And estou na página de "login"
-    When eu tento acessar o aplicatico com o email "acruchi@gmail.com"
-        And o campo da senha é preenchido por "1234"
+    When eu tento acessar o aplicatico com o email "Test@gmail.com.com"
+        And o campo da senha é preenchido por "12344444"
     Then eu recebo uma mensagem de erro dizendo que a senha ou usuario está errada
         And eu continuo na página de login
 
