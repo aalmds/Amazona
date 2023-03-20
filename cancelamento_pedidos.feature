@@ -1,34 +1,33 @@
-Cenário de GUI
-
-
 Feature: Cancelamento de pedidos
-In order to Eu possa gerenciar melhor meus pedidos
-As an Usuário/Cliente
-Eu preciso poder cancelar meus pedidos
-
+As a um usuário 
+I want to gerenciar meus pedidos
+So that eu possa cancelar meus pedidos
 
 Scenario: Cancelar pedido logado porém sem digitar senha de confirmação.
-Given Eu estou na página “Histórico de pedidos” logado como usuário de cpf “12342153411” 
-And o pedido "143" existe no “Histórico de pedidos”
-When Eu escolho cancelar o pedido “143”
-And eu solicito o cancelamento
-Then aparece a mensagem de erro “Você precisa preencher o campo com sua senha. Tente Novamente!”
-And a senha é requisitada
+Given o usuário de CPF  "12342153411" está na na página "histórico de pedidos"
+And o pedido "143" existe no "histórico de pedidos" como "em trânsito"
+When o usuário de CPF "12342153411" escolhe "cancelar o pedido" de número "143"
+And o usuário de CPF "12342153411" recebe uma "requisição de senha"
+And o usuário de CPF  "12342153411" "confirma o cancelamento"
+Then o usuário de CPF "12342153411" recebe uma mensagem "Você precisa preencher o campo com sua senha. Tente Novamente!"
+And o usuário de CPF "12342153411" continua vendo uma "requisição de senha"
 
 
 Scenario: Cancelar pedido logado porém digitando senha errada
-Given Eu estou na página “Histórico de pedidos” logado como usuário de cpf “12342153411”
-And o pedido "143" existe no “Histórico de pedidos”
-When Eu escolho cancelar o pedido “143”
-And preencho com a senha “123456” e solicito o cancelamento
-Then aparece a mensagem de erro “Senha errada. Tente Novamente!”
-And a senha é requisitada
+Given o usuário de CPF "12342153411" está na página "histórico de pedidos"
+And o pedido "143" existe no "histórico de pedidos" como "em trânsito"
+When o usuário de CPF "12342153411" escolhe "cancelar o pedido" de número "143"
+And o usuário de CPF "12342153411" recebe uma "requisação de senha"
+And o usuário de CPF "12342153411" preenche a senha
+Then o usuário de CPF  "12342153411" recebe uma mensagem "Senha errada. Tente Novamente!"
+And o usuário de CPF "12342153411" continua vendo a "requisação de senha"
 
 
 Scenario: Cancelar pedido logado porém digitando senha certa
-Given Eu estou na página “Histórico de pedidos” logado como usuário de cpf “12342153411”
-And o pedido "143" existe no “Histórico de pedidos”
-When Eu escolho cancelar o pedido “143”
-And preencho com a senha "456123” e solicito o cancelamento
-Then o pedido “143”  aparecerá no "Histórico de pedidos" com status "cancelado
-And Aparece a mensagem de confirmação “Pedido "143" foi cancelado com sucesso”
+Given o usuário de CPF "12342153411" está na página "histórico de pedidos"
+And o pedido "143" existe no "histórico de pedidos" como "em trânsito"
+When o usuário de CPF "12342153411" escolhe cancelar o pedido "143"
+And o usuário de CPF "12342153411" recebe uma "requisição de senha"
+And o usuário de CPF "12342153411" preenche a senha
+Then o pedido "143" aparece no "histórico de pedidos" como "cancelado"
+And o usuário de CPF "12342153411" recebe uma mensagem "Pedido cancelado com sucesso!"
