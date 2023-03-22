@@ -38,11 +38,13 @@ Scenario: Recuperar a senha incorreta
     When o usuário preenche o email "usererror@gmail.com" 
     Then recebe uma mensagem "Email inválido"
 
+#ultilizar o nome do usuario a partir da url do mudando a senha ou entao a partir de um id interno
 Scenario: Mudando a senha correta
     Given o usuário está na pagina de "recuperar a senha"
     When o usuário preenche o "código" corretamente
     Then o usuário recebe uma mensagem "digite uma nova senha"
-    And é encaminhado para a página inicial
+    And preenche com uma "nova senha"
+    And é encaminhado para a "página inicial"
 
 Scenario: Mudando a senha incorreta
     Given o usuário está na pagina de "recuperar a senha"
