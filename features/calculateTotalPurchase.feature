@@ -21,8 +21,7 @@ Feature: Estatísticas
         Then os valores "150", "200" e "100" que são, respectivamente, a média, o máximo e o mínimo dos valores das compras canceladas por pedido são mostrados
 
     Scenario: Selecionar período
-        Given que o usuário com CPF “00000000013” é o administrador
-        And o usuário está na página de administrador
-        When  O usuário seleciono o período  "MÊS"
-        And O usuário acessa a aba de dados por pedido (ID 132)
+        Given que o usuário com CPF “00000000013” está na página de "administrador"
+        When o usuário de CPF "00000000013" seleciona o período "mês"
+        And o usuário de CPF "00000000013"  acessa os "dados por pedido"
         Then os valores "150", "200" e "100" que são, respectivamente, a média, o máximo e o mínimo dos valores das compras em cada pedidos no mês atual são mostrados
