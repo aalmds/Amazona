@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "NODE_ENV=${env} ng serve --configuration=${dev}",
-    "build": "NODE_ENV=${env} ng build --configuration=${env}",
-    "deploy": "NODE_ENV=${env} npm run build && vercel --prod",
-    "watch": "NODE_ENV=${env} ng build --watch --configuration=${env}",
-    "test": "NODE_ENV=${env} ng test --watch --configuration=${env}"
+    "start": "NODE_ENV=dev ng serve --configuration=${dev}",
+    "build": "NODE_ENV=dev ng build --configuration=dev",
+    "deploy": "NODE_ENV=dev npm run build && vercel --prod",
+    "watch": "NODE_ENV=dev ng build --watch --configuration=dev",
+    "test": "NODE_ENV=dev ng test --watch --configuration=dev"
   },
   "private": true,
   "dependencies": {
