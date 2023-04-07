@@ -1,4 +1,5 @@
-{
+[
+  {
     "id": "b9c4a338-e19e-4bfa-bc83-45171017407c",
     "userId": "aa6c5fd5-2f03-45b9-8749-f94bd20704be",
     "totalValue": "600",
@@ -6,40 +7,19 @@
     "statusHistory": [
       {
         "id": "c1894648-0e07-48b2-b988-b05ed49c9aa6",
-        "status": {
-          "id": "f307102d-698b-4ad5-adf6-de7281243583",
-          "status": "processing"
-        },
+        "statusId": "f307102d-698b-4ad5-adf6-de7281243583",
         "date": "2023-01-29T06:00:00Z"
       },
       {
         "id": "042045ac-b6a5-4e0b-8f80-cb85d823af8d",
-        "status": {
-          "id": "8bbb7b46-17d6-4df3-8171-0003814e3812",
-          "status": "active"
-        },
+        "statusId": "8bbb7b46-17d6-4df3-8171-0003814e3812",
         "date": "2023-01-29T08:00:00Z"
       }
     ],
-    "products": [
-      {
-        "id": "a66807c2-d202-4b7e-853d-f2c5bfbb2f6f",
-        "name": "Camisa Adidas",
-        "brand": {
-          "id": "e92cf80c-de73-4cf8-8f09-579efa669dd8",
-          "name": "Adidas",
-          "sector": {
-            "id": "8d271874-f125-469a-9013-c0764713937b",
-            "name": "sporting_goods"
-          }
-        },
-        "value": "200",
-        "productCategory": {
-          "id": "94582aca-7715-4ad7-b855-bdaad2b2899e",
-          "name": "clothing"
-        }
-      }
+    "productsIds": [
+      "a66807c2-d202-4b7e-853d-f2c5bfbb2f6f"
     ],
     "address": "Endereco tal",
     "payment": "pix"
   }
+]
