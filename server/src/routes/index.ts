@@ -18,6 +18,7 @@ import ProductCategoriesService from '../services/product-categories.service';
 import ProductService from '../services/product.service';
 import SectorService from '../services/sector.service';
 import UserService from '../services/user.service';
+import AdminController from '../controllers/admin.controller';
 
 const router = Router();
 const prefix = '/api';
@@ -64,4 +65,10 @@ export default (app: Express) => {
       di.getService(ProductCategoriesService)
     ).router
   );
+  app.use(
+    prefix,
+    new AdminController(
+      router      
+    ).router
+  )
 };
