@@ -24,7 +24,10 @@ let distribuicaoEstatistica: ((vals : number[], granularity : number) => number[
     granularity : number
 ): number[] {
 
-
+    if (vals.length < 2){
+        return [0];
+        console.log('there are not enough values to calculate a distribution')
+    }
     var sorted_vals: number[] = vals.sort((n1,n2) => n1 - n2);
     
     let minimo = sorted_vals[0]; //Math.min(...vals);
