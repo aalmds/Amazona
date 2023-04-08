@@ -75,19 +75,26 @@ export default class AdminController {
     }    
     private initRoutes() {
         this.router.get(this.prefix, async (req , res ) => { 
-            console.log("teste:", req.body);
+            
             let orders_arr : OrderEntity[] = (await this.db.getOrder()) // pegar todos
             let recentOrders = orders_arr.filter((order) => order.purchaseDate > "20/10") //filtra
-            let totalValues = orders_arr.map((order) => order.totalValue) //aplica operacao em todos
+            let totalValues = orders_arr.map((order) => Number(order.totalValue)) //aplica operacao em todos
             let totalValues_filter_data = orders_arr.map((order) => { // retorna undifined em alguns casos
                if(order.purchaseDate > "20/02")
                     return order.totalValue
             })
-
-            console.log("teste:", orders_arr);
+        
+            
             console.log(orders_arr);
             res.status(200);
-            res.send(totalValues);
+            res.send({
+                "all": totalValues,
+                "max": Math.max(...totalValues),
+                "min": Math.min(...totalValues),
+                "mean": totalValues.reduce((a, b) => a + b, 0) / totalValues.length,
+                //"distribution": distribuicao_estatistica(totalValues_filter_data, 10),
+                
+                });
             
 
             //this.db.add()
