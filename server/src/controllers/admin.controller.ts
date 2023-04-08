@@ -81,7 +81,7 @@ export default class AdminController {
             await this.db.createOrder(new OrderEntity({
                 userId:         baseOrder?.id + String(i),
                 totalValue:     String((Number(baseOrder?.totalValue)*Math.random())) ,
-                purchaseDate:   "2023-" + String(getRandomInt(1,13)) + "-29T06:00:00Z"   ,
+                purchaseDate:   String(getRandomInt(2020,2023)) + "-" + String(getRandomInt(1,13)) + "-29T06:00:00Z"   ,
                 statusHistory:  baseOrder?.statusHistory   ,
                 productsIds:    baseOrder?.productsIds     , 
                 address :       baseOrder?.address         ,
