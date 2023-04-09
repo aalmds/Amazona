@@ -11,8 +11,23 @@ import { Chart } from 'chart.js';
 })
 export class AdminComponent {
   chart: any;
+  data: any;
+
+  constructor(private http: HttpClient) {}
+
+  minValue: number = 800;
+  maxValue: number = 1000;
+  averageValue: number = 900;
+  productName: string = 'Camisa azul';
+  productPrice: number = 850;
 
   ngOnInit() {
+    this.http.get<{Ever: {all: number[], max: number, min: number, mean: number, distribution: number[]}}>('http://localhost:3000/api/admin')
+    .subscribe((response) =>{
+      console.log("CHART", response.Ever.distribution);
+      this.minValue = response.Ever.min;
+      this.maxValue = response.Ever.max;
+      this.averageValue = response.Ever.mean;
     this.chart = new Chart('myChart', {
       type: 'bar',
       data: {
@@ -28,9 +43,9 @@ export class AdminComponent {
         datasets: [
           {
             label: 'Receita',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: response.Ever.distribution,
             //fill: true,
-            borderColor: "#ff9900",
+            backgroundColor: "#ff9900",
           }
           
         ],
@@ -40,5 +55,26 @@ export class AdminComponent {
         aspectRatio: 2.5,
       },
     });
+  })
+  }
+
+  getMinValue(): number {
+    return this.minValue;
+  }
+
+  getMaxValue(): number {
+    return this.maxValue;
+  }
+
+  getAverageValue(): number {
+    return this.averageValue;
+  }
+
+  getProductName(): string {
+    return this.productName;
+  }
+
+  getProductPrice(): number {
+    return this.productPrice;
   }
 }

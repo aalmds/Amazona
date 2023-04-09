@@ -25,8 +25,8 @@ let distribuicaoEstatistica: ((vals : number[], granularity : number) => number[
 ): number[] {
 
     if (vals.length < 2){
-        return [0];
-        console.log('there are not enough values to calculate a distribution')
+        return [1];
+        
     }
     var sorted_vals: number[] = vals.sort((n1,n2) => n1 - n2);
     
@@ -65,6 +65,23 @@ let distribuicaoEstatistica: ((vals : number[], granularity : number) => number[
     return dist;
 };
 
+let priceMask :  ((val: number) => String) = function(val: number): String{
+    
+    var value = String(val).split('.');
+    var precoString = "srgfd";
+    if (value.length == 1){
+        precoString = value[0] + ",00";
+    }
+    else{
+        
+        precoString = value[0]+ "," +  value[1].slice(0,2);
+        
+    }
+    console.log("preco: ",precoString);
+    console.log(value);
+    return precoString 
+}
+
 export default class AdminController {
     private prefix: string = '/admin';
     public router: Router;
@@ -84,7 +101,8 @@ export default class AdminController {
             await this.db.createOrder(new OrderEntity({
                 userId:         baseOrder?.id + String(i),
                 totalValue:     String((Number(baseOrder?.totalValue)*Math.random())) ,
-                purchaseDate:   String(getRandomInt(2020,2023)) + "-" + String(getRandomInt(1,13)) + "-29T06:00:00Z"   ,
+                //purchaseDate:   String(getRandomInt(2020,2023)) + "-" + String(getRandomInt(1,13)) + "-29T06:00:00Z"   ,
+                purchaseDate:  "2023-"+"04-29T06:00:00Z",
                 statusHistory:  baseOrder?.statusHistory   ,
                 productsIds:    baseOrder?.productsIds     , 
                 address :       baseOrder?.address         ,
@@ -109,21 +127,22 @@ export default class AdminController {
             // })
         
             
+            
             res.status(200);
             res.send({
                 "Ever":{
                             "all": totalValues,
-                            "max": Math.max(...totalValues),
-                            "min": Math.min(...totalValues),
-                            "mean": totalValues.reduce((a, b) => a + b, 0) / totalValues.length,
+                            "max": priceMask(Math.max(...totalValues)),
+                            "min": priceMask(Math.min(...totalValues)),
+                            "mean": priceMask(totalValues.reduce((a, b) => a + b, 0) / totalValues.length),
                             "distribution": distribuicaoEstatistica(totalValues, 5),
                         },
                 "Monthly":{
                             "all": monthlyValues,
-                            "max": Math.max(...monthlyValues),
-                            "min": Math.min(...monthlyValues),
-                            "mean": monthlyValues.reduce((a, b) => a + b, 0) / monthlyValues.length,
-                           "distribution": distribuicaoEstatistica(monthlyValues, 5),
+                            "max":  priceMask(Math.max(...monthlyValues)),
+                            "min":  priceMask(Math.min(...monthlyValues)),
+                            "mean": priceMask(monthlyValues.reduce((a, b) => a + b, 0) / monthlyValues.length),
+                            "distribution": distribuicaoEstatistica(monthlyValues, 5),
                         }
                 });
                 });
