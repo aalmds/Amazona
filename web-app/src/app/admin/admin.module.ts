@@ -8,4 +8,4 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [AdminComponent],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
 })
-//export class AdminModule {}
+export class AdminModule {}
