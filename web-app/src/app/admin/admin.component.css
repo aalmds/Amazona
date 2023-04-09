@@ -1,0 +1,127 @@
+
+.main-card {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    background-color: var(--color-details);
+    border-radius: 6px;
+    height: 150px;
+    width: 280px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.sec-card {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 6px;
+    height: 150px;
+    width: 280px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.last-card {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    background-color: var(--color-texts);
+    border-radius: 6px;
+    height: 150px;
+    width: 280px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 82px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.card-title {
+    text-align: center;
+    flex-direction: column;
+    color: var(--color-inactive);
+    font-size: var(--font-subtitle);
+    font-weight: var(--font-weight-medium);
+}
+
+.card-subtitle {
+    text-align: center;
+    flex-direction: column;
+    color: var(--color-inactive);
+    font-size: var(--font-texts);
+    font-weight: var(--font-weight-regular);
+}
+
+.card-number {
+    text-align: center;
+    flex-direction: column;
+    font-size: var(--font-title);
+    font-weight: var(--font-weight-bold);
+}
+
+.chart-header{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 82px;
+    margin-right: 100px;
+    margin-left: 100px;
+    padding: 16px 32px;
+    background-color: var(--color-texts);
+    border-radius: 6px 6px 0 0;
+}
+
+.chart-header > div {
+    display: flex;
+    flex-direction: row;
+}
+
+.chart-header > div > p {
+    padding: 0 28px;
+}
+
+.chart-title {
+    font-size: var(--font-subtitle);
+    font-weight: var(--font-weight-medium);
+    color: white;
+}
+
+.chart-container {
+    margin-top: 0;
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-bottom: 72px;
+    min-height: 400px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 6px 6px;
+}
+
+.main-card > p, .last-card > p{
+    color: white;
+}
+
+.main-card, .sec-card, .last-card {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+#MyChart {
+    background-color: orange;
+}

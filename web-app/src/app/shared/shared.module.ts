@@ -28,7 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarService } from '../services/snack-bar.service';
 import { CardComponent } from './card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgChartsModule } from 'ng2-charts'
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -61,6 +61,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
+    NgChartsModule,
   ],
   exports: [
     CommonModule,
@@ -87,6 +88,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DatePickerComponent,
     TextInputComponent,
     CardComponent,
+    NgChartsModule,
   ],
   providers: [provideNgxMask(), SnackBarService],
 })
