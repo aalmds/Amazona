@@ -17,13 +17,13 @@ export class AdminComponent {
       type: 'bar',
       data: {
         labels: [
-          1,//'January',
-          2,//'February',
-          3,//'March',
-          4,//'April',
-          5,//'May',
-          6,//'June',
-          7,//'July',
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
         ],
         datasets: [
           {

@@ -94,7 +94,7 @@ export default class AdminController {
     }    
     private initRoutes() {
         this.router.get(this.prefix, async (req , res ) => { 
-            
+            //this.generateOrders(10)
             let orders_arr : OrderEntity[] = (await this.db.getOrder()) // pegar todos
             let currentMonth = new Date().getMonth()
             
@@ -132,8 +132,3 @@ export default class AdminController {
             //this.db.add()
     }
 }
-
-
-
-// C:\Users\rodri\Documents\GitHub\Amazona\server\src\data\orders.json
-// C:\Users\rodri\Documents\GitHub\Amazona\server\dist\src\data\orders.json
