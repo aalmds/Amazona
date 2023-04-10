@@ -5,7 +5,7 @@ Feature: Estatísticas
     So that eu possa ver estatísticas relacionadas às compras que foram canceladas
 
     Scenario: Ver estatÍstica geral
-        Given que o usuário com CPF “00000000013” está na página de administrador
+        Given que o usuário com CPF “00000000013” está na página de "administrador"
         And as métricas do valores das compras (no tempo) são respectivamente "15000", "20000" e "10000"
         Then os valores  "15000", "20000" e "10000" que são, respectivamente, as métricas do valor das compras (no tempo) são mostrados
 
@@ -16,7 +16,7 @@ Feature: Estatísticas
         Then os valores "150", "200" e "100" que são, respectivamente, as métricas dos valores das compras em cada pedidos são mostrados
 
     Scenario: Ver estatística dos cancelados
-        Given que o usuário com CPF “00000000013” está na página de administrador
+        Given que o usuário com CPF “00000000013” está na página de "administrador"
         And as métricas do valores das compras canceladas (por pedido) são respectivamente "150", "200" e "100"
         When o usuário  de CPF "00000000013" acessa as dados para "pedidos cancelados"
         Then os valores "150", "200" e "100" que são, respectivamente, as métricas dos valores das compras canceladas por pedido são mostrados
