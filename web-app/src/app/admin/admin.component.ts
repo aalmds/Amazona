@@ -10,7 +10,9 @@ import { Chart } from 'chart.js';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  chart: any;
+  firstChart: any;
+  secondChart: any;
+  thirdChart: any;
   data: any;
 
   constructor(private http: HttpClient) {}
@@ -22,39 +24,111 @@ export class AdminComponent {
   productPrice: number = 850;
 
   ngOnInit() {
-    this.http.get<{Ever: {all: number[], max: number, min: number, mean: number, distribution: number[]}}>('http://localhost:3000/api/admin')
+    this.http.get<{
+      Ever: {
+        all: number[],
+        max: number,
+        min: number,
+        mean: number,
+        priceDistribution: { 
+                        'dist': number[],
+                        'bins': number[]
+                          }
+        timeDistribution:  { 
+          'dist': number[],
+          'bins': number[]
+                            }
+      },
+      Monthly: {
+        all: number[],
+        max: number,
+        min: number,
+        mean: number,
+        priceDistribution: { 
+                        'dist': number[],
+                        'bins': number[]
+                    }
+        timeDistribution:  { 
+          'dist': number[],
+          'bins': number[]
+      }},
+      Cancelled: {
+        all: number[],
+        max: number,
+        min: number,
+        mean: number,
+        priceDistribution: { 
+                        'dist': number[],
+                        'bins': number[]
+                    }
+        timeDistribution:  { 
+          'dist': number[],
+          'bins': number[]
+      }}
+
+    }>('http://localhost:3000/api/admin')
     .subscribe((response) =>{
-      console.log("CHART", response.Ever.distribution);
       this.minValue = response.Ever.min;
       this.maxValue = response.Ever.max;
       this.averageValue = response.Ever.mean;
-    this.chart = new Chart('myChart', {
-      type: 'bar',
-      data: {
-        labels: [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-        ],
-        datasets: [
-          {
-            label: 'Receita',
-            data: response.Ever.distribution,
-            //fill: true,
-            backgroundColor: "#ff9900",
-          }
-          
-        ],
-      },
-      options: {
-        responsive: true,
-        aspectRatio: 2.5,
-      },
+      this.firstChart = new Chart('myChart', {
+        type: 'bar',
+        data: {
+          labels: response.Ever.priceDistribution.bins,
+          datasets: [
+            {
+              label: 'Receita',
+              data: response.Ever.priceDistribution.dist,
+              //fill: true,
+              backgroundColor: "#ff9900",
+            }
+            
+          ],
+        },
+        options: {
+          responsive: true,
+          aspectRatio: 2.5,
+        },
+      });
+      this.secondChart = new Chart('secondChart', {
+        type: 'bar',
+        data: {
+          labels: response.Monthly.priceDistribution.bins,
+          datasets: [
+            {
+              label: 'Receita',
+              data: response.Monthly.priceDistribution.dist,
+              //fill: true,
+              backgroundColor: "#ff9900",
+            }
+            
+          ],
+        },
+        options: {
+          responsive: true,
+          aspectRatio: 2.5,
+        },
+      });
+      this.thirdChart = new Chart('thirdChart', {
+        type: 'bar',
+        data: {
+          labels: response.Cancelled.priceDistribution.bins,
+          datasets: [
+            {
+              label: 'Valor Cancelado',
+              data: response.Cancelled.priceDistribution.dist,
+              //fill: true,
+              backgroundColor: "#ff9900",
+            }
+            
+          ],
+        },
+        options: {
+          responsive: true,
+          aspectRatio: 2.5,
+        },
     });
+    
   })
   }
 
