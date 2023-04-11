@@ -12,7 +12,10 @@ import { Chart } from 'chart.js';
 export class AdminComponent {
   firstChart: any;
   secondChart: any;
-  thirdChart: any;
+  firstChart2: any;
+  secondChart2: any;
+  firstChart3: any;
+  secondChart3: any;
   data: any;
 
   constructor(private http: HttpClient) {}
@@ -71,13 +74,15 @@ export class AdminComponent {
       this.minValue = response.Ever.min;
       this.maxValue = response.Ever.max;
       this.averageValue = response.Ever.mean;
+
+
       this.firstChart = new Chart('myChart', {
         type: 'bar',
         data: {
           labels: response.Ever.priceDistribution.bins,
           datasets: [
             {
-              label: 'Receita',
+              label: 'Faixa de precos das compras',
               data: response.Ever.priceDistribution.dist,
               //fill: true,
               backgroundColor: "#ff9900",
@@ -93,11 +98,11 @@ export class AdminComponent {
       this.secondChart = new Chart('secondChart', {
         type: 'bar',
         data: {
-          labels: response.Monthly.priceDistribution.bins,
+          labels: response.Ever.timeDistribution.bins,
           datasets: [
             {
-              label: 'Receita',
-              data: response.Monthly.priceDistribution.dist,
+              label: 'Receita Mensal',
+              data: response.Ever.timeDistribution.dist,
               //fill: true,
               backgroundColor: "#ff9900",
             }
@@ -109,25 +114,104 @@ export class AdminComponent {
           aspectRatio: 2.5,
         },
       });
-      this.thirdChart = new Chart('thirdChart', {
-        type: 'bar',
-        data: {
-          labels: response.Cancelled.priceDistribution.bins,
-          datasets: [
-            {
-              label: 'Valor Cancelado',
-              data: response.Cancelled.priceDistribution.dist,
-              //fill: true,
-              backgroundColor: "#ff9900",
-            }
-            
-          ],
-        },
-        options: {
-          responsive: true,
-          aspectRatio: 2.5,
-        },
+      
+    this.firstChart2 = new Chart('myChart2', {
+      type: 'bar',
+      data: {
+        labels: response.Monthly.priceDistribution.bins,
+        datasets: [
+          {
+            label: 'quantidade de pedidos por valor',
+            data: response.Monthly.priceDistribution.dist,
+            //fill: true,
+            backgroundColor: "#ff9900",
+          }
+          
+        ],
+      },
+      options: {
+        responsive: true,
+        aspectRatio: 2.5,
+      },
     });
+    this.secondChart2 = new Chart('secondChart2', {
+      type: 'bar',
+      data: {
+        labels: response.Monthly.timeDistribution.bins,
+        datasets: [
+          {
+            label: 'Receita do dia',
+            data: response.Monthly.timeDistribution.dist,
+            backgroundColor: "#ff9900",
+          }
+          
+        ],
+      },
+      options: {
+        responsive: true,
+        aspectRatio: 2.5,
+      },
+    });
+
+
+    //cancelados
+    this.firstChart3 = new Chart('thirdChart2', {
+      type: 'bar',
+      data: {
+        labels: response.Cancelled.priceDistribution.bins,
+        datasets: [
+          {
+            label: 'quantidade de compras canceladas',
+            data: response.Cancelled.priceDistribution.dist,
+            backgroundColor: "#ff9900",
+          }
+          
+        ],
+      },
+      options: {
+        responsive: true,
+        aspectRatio: 2.5,
+      },
+  });
+
+  this.secondChart3 = new Chart('myChart3', {
+    type: 'bar',
+    data: {
+      labels: response.Cancelled.timeDistribution.bins,
+      datasets: [
+        {
+          label: 'valor cancelado total',
+          data: response.Cancelled.timeDistribution.dist,
+          //fill: true,
+          backgroundColor: "#ff9900",
+        }
+        
+      ],
+    },
+    options: {
+      responsive: true,
+      aspectRatio: 2.5,
+    },
+});
+this.secondChart3 = new Chart('secondChart3', {
+  type: 'bar',
+  data: {
+    labels: response.Cancelled.priceDistribution.bins,
+    datasets: [
+      {
+        label: 'quantidade de pedidos cancelados',
+        data: response.Cancelled.priceDistribution.dist,
+        //fill: true,
+        backgroundColor: "#ff9900",
+      }
+      
+    ],
+  },
+  options: {
+    responsive: true,
+    aspectRatio: 2.5,
+  },
+});
     
   })
   }
