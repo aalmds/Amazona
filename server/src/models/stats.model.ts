@@ -33,6 +33,7 @@ export class StatsModel {
             "all" : this.all, 
             "max": this.max, 
             "min": this.min, 
+            "mean": this.mean,
             "priceDistribution": this.priceDistribution, 
             "timeDistribution": this.timeDistribution
         }
