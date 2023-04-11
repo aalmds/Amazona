@@ -178,8 +178,8 @@ export default class StatsService{
         for (let i :number = 0; i < numberOfOrders; i++){
             await db.createOrder(new OrderEntity({
                 userId:         baseOrder?.id + String(i),
-                totalValue:     String((Number(baseOrder?.totalValue)*Math.random())) ,
-                purchaseDate:   "2023-"+"04-" + String(StatsService.getRandomInt(1,28)) +"T06:00:00Z"   ,
+                totalValue:     String((Number(baseOrder?.totalValue)*(Math.random()+0.001))) ,
+                purchaseDate:   "2023-"+ String(StatsService.getRandomInt(1,13)) + "-" + String(StatsService.getRandomInt(1,28)) +"T06:00:00Z"   ,
                 //purchaseDate:  "2023-"+"04-29T06:00:00Z",
                 statusHistory:  [
                                 {
@@ -189,7 +189,7 @@ export default class StatsService{
                                 },
                                 {
                                     "id":"042045ac-b6a5-4e0b-8f80-cb85d823af8d",
-                                    "statusId":"8bbb7b46-17d6-4df3-8171-0003814e3812",
+                                    "statusId":this.id_cancelled,//"8bbb7b46-17d6-4df3-8171-0003814e3812",
                                     "date":"2023-01-29T08:00:00Z"
                                 }  ],
                 productsIds:    baseOrder?.productsIds     , 
@@ -200,7 +200,7 @@ export default class StatsService{
     }
     
     static async ordersStats() {
-            this.generateOrders(10)
+            this.generateOrders(100)
             const db = new OrderRepository()
             let allOrders : OrderEntity[] = (await db.getOrder()) // pegar todos
             let currentMonth = new Date().getMonth()
@@ -220,7 +220,7 @@ export default class StatsService{
             return {
                 "Ever": (new StatsModel(totalValues,allOrders, 10)).getStats(),
                 "Monthly": (new StatsModel(monthlyValues,monthlyOrders, 10)).getStats('Monthly'),
-                "Cancelled": (new StatsModel(cancelledValues,allOrders, 10)).getStats(),
+                "Cancelled": (new StatsModel(cancelledValues,cancelledOrders, 10)).getStats(),
             }
 } 
 

@@ -3,9 +3,9 @@ import  StatsService  from '../services/admin.service';
 
 export class StatsModel {
     all: number[]  = []                
-    max: String = "" 
-    min:   String = "" 
-    mean:   String  = ""  
+    max: String = "0,00" 
+    min:   String = "0,00" 
+    mean:   String  = "0,00"  
     priceDistribution : GraphicalDistribution = {dist: [],bins: []}
     timeDistributionA: GraphicalDistribution = {dist: [],bins: []}
     timeDistributionM: GraphicalDistribution = {dist: [],bins: []}
