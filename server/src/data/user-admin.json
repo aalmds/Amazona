@@ -1,0 +1,14 @@
+[{
+    "id": "ce6f5c66-1967-4b21-9929-51ca7d652151",
+    "CPF": "12989087064",
+    "name": "Clara Acrucha",
+    "username": "acrucha",
+    "email": "acrucha@mail.com",
+    "password": "abcdef12",
+    "payment": "PIX",
+    "address": [
+        "Avenida Acrucha 5"
+    ],
+    "phone": "999789923", 
+    "code": ""
+}]
