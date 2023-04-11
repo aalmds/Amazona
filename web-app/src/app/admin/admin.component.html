@@ -1,29 +1,27 @@
-<div class="cards-container">
-  <div class="main-card">
-    <p class="card-title">Média de arrecadação</p>
-    <p class="card-number">R${{ getAverageValue() }}</p>
-  </div>
 
-  <div class="sec-card">
-    <p class="card-title">Máximo arrecadado</p>
-    <p class="card-number">R${{ getMaxValue() }}</p>
-  </div>
-
-  <div class="sec-card">
-    <p class="card-title">Mínimo arrecadado</p>
-    <p class="card-number">R${{ getMinValue() }}</p>
-  </div>
-
-  <!-- <div class="last-card">
-    <p class="card-title">Produto mais vendido</p>
-    <p class="card-subtitle">{{ getProductName()}}</p>
-    <p class="card-number">{{ getProductPrice()}}</p>
-  </div> -->
-</div>
 <div class="chart-header">
   <p class="chart-title">GERAL</p>
 </div>
 <div class="chart-container">
+
+  <div class="cards-container">
+    
+    <div class="sec-card">
+      <p class="card-title">Máximo arrecadado</p>
+      <p class="card-number">R${{ getMaxValue("Ever") }}</p>
+    </div>
+    <div class="main-card">
+      <p class="card-title">Média de arrecadação</p>
+      <p class="card-number">R${{ getAverageValue("Ever") }}</p>
+    </div>
+  
+    <div class="sec-card">
+      <p class="card-title">Mínimo arrecadado</p>
+      <p class="card-number">R${{ getMinValue("Ever") }}</p>
+    </div>
+  </div>
+
+
   <div class="unique-chart">
     <canvas  id="myChart" ></canvas>
   </div>
@@ -36,6 +34,23 @@
   <p class="chart-title">MES ATUAL</p>
 </div>
 <div class="chart-container">
+  <div class="cards-container">
+    
+    <div class="sec-card">
+      <p class="card-title">Máximo arrecadado</p>
+      <p class="card-number">R${{ getMaxValue("Monthly") }}</p>
+    </div>
+    <div class="main-card">
+      <p class="card-title">Média de arrecadação</p>
+      <p class="card-number">R${{ getAverageValue("Monthly") }}</p>
+    </div>
+  
+    <div class="sec-card">
+      <p class="card-title">Mínimo arrecadado</p>
+      <p class="card-number">R${{ getMinValue("Monthly") }}</p>
+    </div>
+  </div>
+
   <div class="unique-chart">
     <canvas  id="myChart2" ></canvas>
   </div>
@@ -49,6 +64,22 @@
   <p class="chart-title">CANCELADOS</p>
 </div>
 <div class="chart-container">
+  <div class="cards-container">
+    
+    <div class="sec-card">
+      <p class="card-title">Máximo arrecadado</p>
+      <p class="card-number">R${{ getMaxValue("C") }}</p>
+    </div>
+    <div class="main-card">
+      <p class="card-title">Média de arrecadação</p>
+      <p class="card-number">R${{ getAverageValue("C") }}</p>
+    </div>
+  
+    <div class="sec-card">
+      <p class="card-title">Mínimo arrecadado</p>
+      <p class="card-number">R${{ getMinValue("C") }}</p>
+    </div>
+  </div>
   <div class="unique-chart">
     <canvas  id="myChart3" ></canvas>
   </div>

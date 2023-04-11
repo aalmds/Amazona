@@ -23,8 +23,14 @@ export class AdminComponent {
   minValue: number = 800;
   maxValue: number = 1000;
   averageValue: number = 900;
-  productName: string = 'Camisa azul';
-  productPrice: number = 850;
+
+  minValueM: number = 800;
+  maxValueM: number = 1000;
+  averageValueM: number = 900;
+
+  minValueC: number = 800;
+  maxValueC: number = 1000;
+  averageValueC: number = 900;
 
   ngOnInit() {
     this.http.get<{
@@ -74,6 +80,14 @@ export class AdminComponent {
       this.minValue = response.Ever.min;
       this.maxValue = response.Ever.max;
       this.averageValue = response.Ever.mean;
+
+      this.minValueM = response.Monthly.min;
+      this.maxValueM = response.Monthly.max;
+      this.averageValueM = response.Monthly.mean;
+
+      this.minValueC = response.Cancelled.min;
+      this.maxValueC = response.Cancelled.max;
+      this.averageValueC = response.Cancelled.mean;
 
 
       this.firstChart = new Chart('myChart', {
@@ -216,23 +230,46 @@ this.secondChart3 = new Chart('secondChart3', {
   })
   }
 
-  getMinValue(): number {
-    return this.minValue;
+  getMinValue(tipo : string): number {
+  
+    if (tipo == 'Ever') return this.minValue;
+    if(tipo =='Monthly') return this.minValueM;
+    return this.minValueC
   }
 
-  getMaxValue(): number {
-    return this.maxValue;
+  getMaxValue(tipo : string): number {
+    if (tipo == 'Ever')   return this.maxValue;
+    if(tipo == 'Monthly') return this.maxValueM;
+    return this.maxValueC
   }
 
-  getAverageValue(): number {
-    return this.averageValue;
+  getAverageValue(tipo : string): number {
+    
+    if (tipo == 'Ever')   return this.averageValue;
+    if(tipo == 'Monthly') return this.averageValueM;
+    return this.averageValueC;
   }
+  // getMinValueM(): number {
+  //   return this.minValueM;
+  // }
 
-  getProductName(): string {
-    return this.productName;
-  }
+  // getMaxValueM(): number {
+  //   return this.maxValueM;
+  // }
 
-  getProductPrice(): number {
-    return this.productPrice;
-  }
+  // getAverageValueM(): number {
+  //   return this.averageValueM;
+  // }
+  // getMinValueC(): number {
+  //   return this.minValueC;
+  // }
+  
+  // getMaxValueC(): number {
+  //   return this.maxValueC;
+  // }
+  
+  // getAverageValueC(): number {
+  //   return this.averageValueC;
+  // }
+  
 }
