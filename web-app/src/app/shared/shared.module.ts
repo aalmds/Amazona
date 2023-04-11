@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
@@ -29,6 +30,11 @@ import { SnackBarService } from '../services/snack-bar.service';
 import { CardComponent } from './card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgChartsModule } from 'ng2-charts'
+import { NotificationsComponent } from './notifications/notifications.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatBadgeModule } from '@angular/material/badge';
+
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -38,6 +44,7 @@ import { NgChartsModule } from 'ng2-charts'
     DatePickerComponent,
     TextInputComponent,
     CardComponent,
+    NotificationsComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +69,10 @@ import { NgChartsModule } from 'ng2-charts'
     MatSortModule,
     MatSnackBarModule,
     NgChartsModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatBadgeModule,
   ],
   exports: [
     CommonModule,
@@ -84,9 +95,13 @@ import { NgChartsModule } from 'ng2-charts'
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatBadgeModule,
     ButtonComponent,
     DatePickerComponent,
     TextInputComponent,
+    ReactiveFormsModule,
+    RouterModule,
     CardComponent,
     NgChartsModule,
   ],
