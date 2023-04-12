@@ -5,5 +5,12 @@
     "brandId": "e92cf80c-de73-4cf8-8f09-579efa669dd8",
     "value": "200",
     "productCategoryId": "94582aca-7715-4ad7-b855-bdaad2b2899e"
+  },
+  {
+    "id": "ba1db554-636c-4029-9031-7893a059d6d3",
+    "name": "Blusa Adidas",
+    "brandId": "e92cf80c-de73-4cf8-8f09-579efa669dd8",
+    "value": "300",
+    "productCategoryId": "94582aca-7715-4ad7-b855-bdaad2b2899e"
   }
 ]

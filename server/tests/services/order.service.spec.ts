@@ -26,7 +26,7 @@ import OrderStatusItemModel from '../../src/models/order-status-item.model';
 import ProductModel from '../../src/models/product.model';
 
 
-describe.skip('OrderService', () => {
+describe('OrderService', () => {
   // repositories
   let sectorRepository: SectorRepository;
   let brandRepository: BrandRepository;
