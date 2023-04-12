@@ -1,5 +1,6 @@
 import BrandRepository from '../repositories/brand.repository';
 import NotificationRepository from '../repositories/notification.repository';
+import OrderStatusRepository from '../repositories/order-status.repository';
 import OrderRepository from '../repositories/order.repository';
 import ProductCategoriesRepository from '../repositories/product-categories.repository';
 import ProductRepository from '../repositories/product.repository';
@@ -7,7 +8,9 @@ import SectorRepository from '../repositories/sector.repository';
 import UserRepository from '../repositories/user.repository';
 import AuthenticationService from '../services/authentication.service';
 import BrandService from '../services/brand.service';
+import EmailService from '../services/email.service';
 import NotificationService from '../services/notification.service';
+import OrderStatusService from '../services/order-status.service';
 import OrderService from '../services/order.service';
 import ProductCategoriesService from '../services/product-categories.service';
 import ProductService from '../services/product.service';
@@ -27,21 +30,7 @@ di.registerService(
 // Authentication
 di.registerService(
   AuthenticationService,
-  new AuthenticationService(di.getRepository(UserRepository))
-);
-
-// Order
-di.registerRepository(OrderRepository, new OrderRepository());
-di.registerService(
-  OrderService,
-  new OrderService(di.getRepository(OrderRepository))
-);
-
-// Notification
-di.registerRepository(NotificationRepository, new NotificationRepository());
-di.registerService(
-  NotificationService,
-  new NotificationService(di.getRepository(NotificationRepository))
+  new AuthenticationService(di.getService(UserService), di.getRepository(UserRepository))
 );
 
 // Sector
@@ -79,5 +68,34 @@ di.registerService(
     di.getRepository(ProductRepository),
     di.getService(BrandService),
     di.getService(ProductCategoriesService)
+  )
+);
+
+// Order Status
+di.registerRepository(OrderStatusRepository, new OrderStatusRepository());
+di.registerService(
+  OrderStatusService,
+  new OrderStatusService(di.getRepository(OrderStatusRepository))
+);
+
+// Notification
+di.registerRepository(NotificationRepository, new NotificationRepository());
+di.registerService(
+  NotificationService,
+  new NotificationService(
+    di.getRepository(NotificationRepository),
+    di.getService(UserService)
+  )
+);
+
+// Order
+di.registerRepository(OrderRepository, new OrderRepository());
+di.registerService(
+  OrderService,
+  new OrderService(
+    di.getRepository(OrderRepository),
+    di.getService(OrderStatusService),
+    di.getService(ProductService),
+    di.getService(NotificationService)
   )
 );
