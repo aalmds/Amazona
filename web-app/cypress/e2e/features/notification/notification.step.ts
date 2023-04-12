@@ -32,9 +32,9 @@ When('o usuário de CPF {string} escolhe {string}', (cpf, buttonLabel) => {
 });
 
 When('o usuário de CPF {string} escolhe ver {string}', (cpf, opcao) => {
-  cy.get('button.mat-mdc-menu-trigger').click(); // clica no botão de notificações
-  cy.contains('span.medium-text', 'Clique para ver mais detalhes').click(); // clica no link "Clique para ver mais detalhes"
-  cy.get('body').click(0, 0); // clica fora do menu, no fundo da página
+  cy.get('button.mat-mdc-menu-trigger').click(); 
+  cy.contains('span.medium-text', 'Clique para ver mais detalhes').click(); 
+  cy.get('body').click(0, 0); 
 });
 
 
@@ -45,7 +45,6 @@ Then('o usuário de CPF {string} recebe uma mensagem {string}', (cpf, message) =
   })});
 
   Then('o usuário de CPF {string} visualiza as notificações de número {string} e {string}', () => {
-  
-    // Verifica se a página foi carregada corretamente
+
     cy.contains(`Pedido Nº #123314`);
   });
