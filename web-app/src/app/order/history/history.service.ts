@@ -86,7 +86,8 @@ export class HistoryService extends BaseService {
     this.endDate?.setValue('');
   }
   public async buscar(): Promise<OrderModel[]> {
-    const userId = this.authenticationService.getUser()?.id;
+    //const userId = this.authenticationService.getUser()?.id;
+    const userId = "ce6f5c66-1967-4b21-9929-51ca7d652151"
 
     let uri: string = `${this.prefix}/${userId}?`;
     if (!!this.inputName) {
