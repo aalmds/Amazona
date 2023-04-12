@@ -71,6 +71,51 @@ describe('OrderController', () => {
     address: "Endereco tal",
     payment: "pix"
   });
+  const mockedOrder2: OrderModel = new OrderModel({
+    id: "96167110-8224-4729-b2f2-5814f11d3126",
+    userId: mockedUserId,
+    totalValue: "600",
+    purchaseDate: new Date("2019-01-29T06:00:00.000Z"),
+    statusHistory: [
+      {
+        id: "c1894648-0e07-48b2-b988-b05ed49c9aa6",
+        status: {
+          id: "f307102d-698b-4ad5-adf6-de7281243583",
+          status: "in transit"
+        },
+        date: "2023-01-29T06:00:00Z"
+      },
+      {
+        id: "042045ac-b6a5-4e0b-8f80-cb85d823af8d",
+        status: {
+          id: "a067121b-73ac-4d45-8137-158f58dea0a1",
+          status: "delivered"
+        },
+        date: "2023-01-29T08:00:00Z"
+      }
+    ],
+    products: [
+      {
+        id: "ba1db554-636c-4029-9031-7893a059d6d3",
+        name: "Blusa Adidas",
+        brand: {
+          id: "e92cf80c-de73-4cf8-8f09-579efa669dd8",
+          name: "Adidas",
+          sector: {
+            id: "8d271874-f125-469a-9013-c0764713937b",
+            name: "sporting_goods"
+          }
+        },
+        value: "300",
+        productCategory: {
+          id: "94582aca-7715-4ad7-b855-bdaad2b2899e",
+          name: "clothing"
+        }
+      }
+    ],
+    address: "Endereco tal",
+    payment: "pix"
+  });
   const updatedMockedStatus: OrderStatusItemEntity = new OrderStatusItemEntity({
     statusId: "0fc0ea4f-840a-4a45-b657-1a364fb4fe72",
     date: "2023-01-29T06:00:20Z"
@@ -100,6 +145,8 @@ describe('OrderController', () => {
 
   })
   const mockedOrderArray: OrderModel[] = [mockedOrder]
+  const mockedOrderArray2: OrderModel[] = [mockedOrder, mockedOrder2]
+  
   it('[GET] /api/orders/:id should return an order by id', async () => {
     const response = await request.get(`/api/orders/${mockedOrderId}`).send();
     const result: OrderModel = response.body.data;
@@ -110,7 +157,7 @@ describe('OrderController', () => {
   it('[GET] /api/orders/history/:userId should return the orders by an userId', async () => {
     const response = await request.get(`/api/orders/history/${mockedUserId}`).send();
 
-    expect(transformReponseInOrderModel(response)).toEqual(mockedOrderArray);
+    expect(transformReponseInOrderModel(response)).toEqual(mockedOrderArray2);
   });
   it('[GET] /api/orders/history/:userId?productName=Camisa Adidas should return the orders by an userId of Product Name=Camisa Adidas', async () => {
     const response = await request.get(`/api/orders/history/${mockedUserId}?productName=${encodeURIComponent(mockedProductName)}`).send();
