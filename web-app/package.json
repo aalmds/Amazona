@@ -7,18 +7,28 @@
     "build": "NODE_ENV=${env} ng build --configuration=${env}",
     "deploy": "NODE_ENV=${env} npm run build && vercel --prod",
     "watch": "NODE_ENV=${env} ng build --watch --configuration=${env}",
-    "test": "NODE_ENV=${env} ng test --watch --configuration=${env}"
+    "test": "NODE_ENV=${env} ng test --configuration=${env}",
+    "test:e2e": "npx cypress open"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/e2e/features/"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^15.1.0",
+    "@angular/animations": "^15.2.3",
+    "@angular/cdk": "^15.2.3",
     "@angular/common": "^15.1.0",
     "@angular/compiler": "^15.1.0",
     "@angular/core": "^15.1.0",
+    "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^15.1.0",
+    "@angular/material": "^15.2.3",
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "moment": "^2.29.4",
+    "ngx-mask": "^15.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
@@ -28,7 +38,12 @@
     "@angular-devkit/build-angular": "^15.1.5",
     "@angular/cli": "~15.1.5",
     "@angular/compiler-cli": "^15.1.0",
+    "@cucumber/cucumber": "^8.11.1",
+    "@serenity-js/web": "^3.1.1",
+    "@types/cypress-cucumber-preprocessor": "^4.0.1",
     "@types/jasmine": "~4.3.0",
+    "cypress": "^12.9.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "dotenv-webpack": "^8.0.1",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
