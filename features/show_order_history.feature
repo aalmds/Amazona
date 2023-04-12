@@ -10,10 +10,10 @@ When o usuário acessa a página "histórico de pedidos"
 Then  o usuário vidualiza os pedidos de número "101" e "102"
 
 Scenario: Visualizar histórico de pedidos - Lista vazia
-Given que o usuário de CPF "12989087064" está na página "inicial"
-And o usuário de CPF "12989087064" não possui nenhum pedido
-When o usuário de CPF "12989087064" acessa a página "histórico de pedidos"
-Then o usuário de CPF "12989087064" visualiza uma mensagem "Nenhum pedido encontrado"
+Given que o usuário de CPF "00342153411" está na página "inicial"
+And o usuário de CPF "00342153411" não possui nenhum pedido
+When o usuário de CPF "00342153411" acessa a página "histórico de pedidos"
+Then o usuário de CPF "00342153411" visualiza uma mensagem "Nenhum pedido encontrado"
 
 Scenario: Filtrar histórico de pedidos por número do pedido
 Given que o usuário de CPF "12989087064" está na página "histórico de pedidos"
@@ -23,15 +23,15 @@ Then o usuário de CPF "12989087064" visualiza o pedido de número "101"  na pá
 
 Scenario: Filtrar histórico de pedidos por data
 Given que o usuário de CPF "12989087064" está na página "histórico de pedidos"
-And o usuário de CPF "12989087064" possui o pedido de número "101" criado na data "14/01/2022"
-When o usuário de CPF "12989087064" "filtra por data" os pedidos para o intervalo de datas "12/01/2022" à "16/01/2022"
+And o usuário de CPF "12989087064" possui o pedido de número "101" criado na data "01/29/2023"
+When o usuário de CPF "12989087064" "filtra por data" os pedidos para o intervalo de datas "01/29/2022" à "01/29/2024"
 Then o usuário de CPF "12989087064" visualiza o pedido de número "101" na página "histórico de pedidos"
 
 Scenario: Filtrar histórico de pedidos por múltiplos status
 Given que o usuário de CPF "12989087064" está na página "histórico de pedidos"
-And o usuário de CPF "12989087064" possui o pedido de número "101" como "ativo"
-And o usuário de CPF "12989087064" possui o pedido de número "102" como "cancelado"
-When o usuário de CPF "12989087064" "filtra por status" os pedidos para "ativo" e "cancelado"
+And o usuário de CPF "12989087064" possui o pedido de número "101" como "Confirmado"
+And o usuário de CPF "12989087064" possui o pedido de número "102" como "Entregue"
+When o usuário de CPF "12989087064" "filtra por status" os pedidos para "Confirmado" e "Entregue"
 Then o usuário de CPF "12989087064" visualiza os pedidos de número "101" e "102" no "histórico de pedidos"
 
 Scenario: Buscar histórico de pedidos por nome do produto
@@ -53,5 +53,3 @@ And o usuário de CPF "12989087064" possui o pedido de número "101" com endere�
 When o usuário de CPF "12989087064" seleciona "ver detalhes" do pedido para o pedido de número "101"
 Then o usuário de CPF "12989087064" é redirecionado para a página "detalhes do pedido"
 And o usuário de CPF "12989087064" visualiza o endereço de entrega "Rua Teste" do pedido de número "101"
-
-
