@@ -40,10 +40,10 @@ export class CreateOrderComponent implements OnInit {
           },
           succeeded: (_) => {
             this.snackBarService.showSuccess({
-              message: 'Pedido realizado com sucesso!',
+              message: 'Obrigado, seu pedido foi concluído com sucesso!',
             });
 
-            this.router.navigate(['/']);
+            this.router.navigate(['/order/history']);
           },
         });
       });
