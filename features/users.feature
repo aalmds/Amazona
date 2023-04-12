@@ -6,7 +6,7 @@ Feature: Cadastro e manuntenção de usuários
 Scenario: Cadastro com CPF já utilizado
 Given o usuário de CPF "12989087064" está cadastrado no sistema
 And o usuário está na página de "cadastro dados pessoais"
-When o usuário adiciona o nome "Clara Acrucha", CPF "12989087064", email "clara@mail.com" e senha "abcdef12"
+When o usuário adiciona o nome "Clara Acrucha", CPF "12989087064", username "clara",  email "mvsm3@mail.com" e senha "abcdef12"
 And o usuário escolhe ir para a "próxima etapa"
 Then o usuário recebe uma mensagem "Usuário já cadastrado"
 
@@ -14,21 +14,21 @@ Scenario: Cadastro com username já utilizado
 Given o usário de CPF "12342153411" não está cadastrado no sistema
 And o nome de usuário "rafinha" está cadastrado no sistema
 And o usuário está na página de "cadastro dados pessoais"
-When o usuário adiciona o nome "Rafinha dos Reis", CPF "12342153411", email "rafael@mail.com", senha "1234567a" e nome de usuário "rafinha"
-Then o usuário recebe uma mensagem "Nome de usuário já cadastrado"
+When o usuário adiciona o nome "Rafinha dos Reis", CPF "12342153411", username "rafinha", email "rrl3@mail.com", senha "1234567a"
+Then o usuário recebe uma mensagem "Usuário já cadastrado"
 
 Scenario: Cadastro com email já utilizado
 Given o usuário de CPF "12342151111" não está cadastrado no sistema
 And que o email "pam@mail.com" está cadastrado no sistema
 And o usuário está na página de "cadastro dados pessoais" 
-When o usuário adiciona o nome "Pâmela Cristian", CPF "12342151111", email "pam@mail.com" e senha "abcdef00"
+When o usuário adiciona o nome "Pâmela Cristian", CPF "12342151111", username "pamela", email "aas10@cin.ufpe.br" e senha "abcdef00"
 And o usuário escolhe ir para a "próxima etapa"
-Then o usuário recebe uma mensagem "Email já cadastrado"
+Then o usuário recebe uma mensagem "Usuário já cadastrado"
 
 Scenario: Cadastro com dados obrigatórios e não obrigatórios corretos
 Given o CPF "11022033040" não está cadastrado no sistema
 And o usuário está na página de "cadastro dados pessoais" 
-When o usuário adiciona o nome "Michelly Lima", CPF "00100000504", email "michelly@mail.com", senha "1111000a", nome de usuário "michelly" e número de celular "81999223344"
+When o usuário adiciona o nome "Michelly Lima", CPF "00100000504", username "michelly", email "michelly@mail.com", senha "1111000a" e número de celular "81999223344"
 And o usuário escolhe ir para a "próxima etapa"
 Then o usuário está na página "cadastro endereço"
 When o usuário adiciona o endereço "Avenida Lima 5"
@@ -42,38 +42,33 @@ And o usuário de CPF "11022033040" está na página de "login"
 
 Scenario: Cadastro com CPF inválido
 Given o usuário está na página de "cadastro dados pessoais"
-When o usuário preenche o nome "Camilla Marcelle", CPF "1", email "camilla@mail.com" e senha "abdddf12"
-And o usuário escolhe ir para a "próxima etapa"
-Then o usuário recebe uma mensagem "Formato de CPF inválido."
+When o usuário preenche o nome "Camilla Marcelle", CPF "1" e username "camilla"
+Then o usuário recebe uma mensagem de erro "Formato inválido!"
 
 Scenario: Cadastro com senha inválida
-Given o CPF "00100200304" não está cadastrado no sistema
-And o usuário está na página de "cadastro dados pessoais"
-When o usuário preenche o nome "Malu Santos", CPF "00100200304", email "malu@mail.com" e senha "000"
-And o usuário escolhe ir para a "próxima etapa"
-Then o usuário recebe uma mensagem "Formato de senha inválido"
+Given o usuário está na página de "cadastro dados pessoais"
+When o usuário adiciona a senha "000" e username "malu"
+Then o usuário recebe uma mensagem "Mínimo de 8 caracteres | Formato inválido!"
 
-Scenario: Cadastro com email inválido 
-Given o CPF "00100200304" não está cadastrado no sistema
-And o usuário está na página de "cadastro dados pessoais" 
-When o usuário preenche o nome "Malu Santos", CPF "00100200304", email "mail" e senha "000111ab"
-And o usuário escolhe ir para a "próxima etapa"
-Then o usuário recebe uma mensagem "Formato de email inválido"
+Scenario: Cadastro com email inválido
+Given o usuário está na página de "cadastro dados pessoais" 
+When o usuário adiciona o email "mail" e username "malu"
+Then o usuário recebe uma mensagem "E-mail inválido!"
 
 Scenario: Cadastro com dados pessoais obrigatórios vazios
 Given o usuário está na página de "cadastro dados pessoais" 
 When o usuário escolhe ir para a "próxima etapa"
-Then o usuário recebe uma mensagem "Os campos em vermelho são obrigatórios"
+Then o usuário está na página "cadastro dados pessoais"
 
 Scenario: Cadastro com dados obrigatórios corretos
 Given o CPF "00100200304" não está cadastrado no sistema
 And o usuário está na página de "cadastro dados pessoais" 
-When o usuário preenche o nome "Malu Andrade", CPF "00100200304", email "malu@mail.com" e senha "000111ab" 
+When o usuário preenche o nome "Malu Andrade", CPF "00100200304", username "maluzao", email "malu@mail.com" e senha "000111ab" 
 And o usuário escolhe ir para a "próxima etapa"
 Then o usuário está na página "cadastro endereço"
 And o usuário escolhe ir para a "próxima etapa"
 Then o usuário está na página "cadastro pagamento"
-When o usuário adiciona o método de pagamento "Crédito" com número "0001"
+When o usuário adiciona o método de pagamento "Crédito" com número "000100200030004"
 And o usuário escolhe se "cadastrar"
 Then o usuário de CPF "00100200304" é cadastrado no sistema
 And o usuário de CPF "00100200304" recebe uma mensagem "Sua conta foi cadastrada com sucesso"
@@ -85,27 +80,21 @@ When o usuário de CPF "00100200304" edita seu "nome" para "Maluzinha" e "salva"
 Then o nome do usuário de CPF "00100200304" é atualizado para "Maluzinha"
 And o usuário de CPF "00100200304" com nome "Maluzinha" está na página de "perfil" atualizada
 
-Scenario: Adição de endereço 
+Scenario: Atualização de endereço
 Given o usuário de CPF "00100200304" está na página de "endereço"
-When o usuário de CPF "00100200304" adiciona um endereço "Avenida Maluzinha 1" e "salva" as alterações
-Then um novo endereço "Avenida Maluzinha 1" é adicionado ao usuário de CPF "00100200304"
-And o usuário de CPF "00100200304" está na página de "endereço" atualizada
-
-Scenario: Remoção de endereço 
-Given o usuário de CPF "00100200304" está na página de "endereço"
-When o usuário de CPF "00100200304" "deleta" o endereço "Avenida Maluzinha 1"
-Then o endereço "Avenida Maluzinha 1" do usuário de CPF "00100200304" é removido
-And o usuário de CPF "00100200304" está na página de "endereço" atualizada
+When o usuário de CPF "00100200304" insere o "endereço principal" "Avenida Maluzinha 1" e "salva" as alterações
+Then o endereço do usuário de CPF "00100200304" é atualizado
+Then o usuário está na página de "endereço" atualizada
 
 Scenario: Tentativa de remoção de conta com inserção de senha incorreta 
 Given o usuário de CPF "00100200304" está na página de "deletar conta"
-When o usuário de CPF "00100200304" insere a senha "deletar" e  "confirma a remoção" da conta
+When o usuário de CPF "00100200304" insere a senha "deletar" e "deleta" a conta
 Then o usuário de CPF "00100200304" recebe uma mensagem "Senha incorreta"
 And o usuário de CPF "00100200304" está na página de "deletar conta"
 
 Scenario: Remoção de conta com inserção de senha correta 
 Given o usuário de CPF "00100200304" está na página de "deletar conta"
-When o usuário de CPF "00100200304" insere a senha corretamente e "confirma a remoção" da conta
+When o usuário de CPF "00100200304" insere a senha corretamente e "deleta" a conta
 Then o usuário de CPF "00100200304" recebe uma mensagem "Sua conta foi removida com sucesso"
 And o usuário de CPF "00100200304" é removido do sistema 
 And o usuário está na página de "login"
